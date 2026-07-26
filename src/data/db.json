@@ -1,0 +1,61 @@
+{
+  "categories": [
+    { "id": 1, "name": "Мясной" },
+    { "id": 2, "name": "Овощные" },
+    { "id": 3, "name": "Острые" },
+    { "id": 4, "name": "Сырные" }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "title": "Пепперони Фреш",
+      "description": "Острая пикантная пепперони, увеличенная порция моцареллы, острый перчик халапеньо, фирменный томатный соус",
+      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "variants": [
+        { "dough": "traditional", "size": 25, "price": 35000 },
+        { "dough": "traditional", "size": 30, "price": 45000 },
+        { "dough": "thin", "size": 35, "price": 55000 }
+      ]
+    },
+    {
+      "id": 2,
+      "categoryId": 2,
+      "title": "Овощная Классика",
+      "description": "Свежие томаты, болгарский перец, красный лук, шампиньоны, моцарелла и фирменный соус",
+      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "variants": [
+        { "dough": "traditional", "size": 25, "price": 30000 },
+        { "dough": "traditional", "size": 30, "price": 40000 },
+        { "dough": "thin", "size": 35, "price": 50000 }
+      ]
+    },
+    {
+      "id": 3,
+      "categoryId": 3,
+      "title": "Дьябло Хот",
+      "description": "Острая пепперони, халапеньо, острый соус Шрирача, моцарелла, красный лук и чили-масло",
+      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "variants": [
+        { "dough": "traditional", "size": 25, "price": 38000 },
+        { "dough": "traditional", "size": 30, "price": 48000 },
+        { "dough": "thin", "size": 35, "price": 58000 }
+      ]
+    },
+    {
+      "id": 4,
+      "categoryId": 4,
+      "title": "Четыре Сыра",
+      "description": "Моцарелла, пармезан, дор-блю и чеддер на нежном сливочном соусе",
+      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "variants": [
+        { "dough": "traditional", "size": 25, "price": 40000 },
+        { "dough": "traditional", "size": 30, "price": 50000 },
+        { "dough": "thin", "size": 35, "price": 60000 }
+      ]
+    }
+  ],
+
+  "orders": []
+}
