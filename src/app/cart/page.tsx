@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
 import { doughLabelsShort } from "@/components/PizzaCard";
 import { OrderModal } from "@/components/OrderModal";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function CartPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +49,14 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <main className={containerClasses}>
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-gray-500 hover:text-[#fe5f1e] transition-colors mb-6"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Назад на главную
+        </Link>
+
         <p className="text-center text-gray-500 mt-12">Ваша корзина пуста</p>
       </main>
     );
@@ -54,6 +64,13 @@ export default function CartPage() {
 
   return (
     <main className={containerClasses}>
+      <Link
+        href="/"
+        className="flex items-center gap-2 text-gray-500 hover:text-[#fe5f1e] transition-colors mb-6"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Назад на главную
+      </Link>
       <h1 className="text-2xl font-bold mb-4">Корзина</h1>
 
       {items.map((item) => (
