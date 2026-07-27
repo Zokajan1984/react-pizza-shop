@@ -1,22 +1,24 @@
 {
   "categories": [
-    { "id": 1, "name": "Мясной" },
+    { "id": 1, "name": "Мясные" },
     { "id": 2, "name": "Овощные" },
     { "id": 3, "name": "Острые" },
     { "id": 4, "name": "Сырные" }
   ],
-
   "products": [
     {
       "id": 1,
       "categoryId": 1,
       "title": "Пепперони Фреш",
       "description": "Острая пикантная пепперони, увеличенная порция моцареллы, острый перчик халапеньо, фирменный томатный соус",
-      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcZYbDTtiCs84WM_BAYdw-XyZVoGwY65mJvi9HyBoWlQ&s=10",
       "variants": [
         { "dough": "traditional", "size": 25, "price": 35000 },
         { "dough": "traditional", "size": 30, "price": 45000 },
-        { "dough": "thin", "size": 35, "price": 55000 }
+        { "dough": "traditional", "size": 35, "price": 55000 },
+        { "dough": "thin", "size": 25, "price": 33000 },
+        { "dough": "thin", "size": 30, "price": 43000 },
+        { "dough": "thin", "size": 35, "price": 53000 }
       ]
     },
     {
@@ -24,11 +26,14 @@
       "categoryId": 2,
       "title": "Овощная Классика",
       "description": "Свежие томаты, болгарский перец, красный лук, шампиньоны, моцарелла и фирменный соус",
-      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0Pt9a-o8DHL9Httrr7fIvP5kDzzdVqJWwA0dyAC3HbQ&s=10",
       "variants": [
         { "dough": "traditional", "size": 25, "price": 30000 },
         { "dough": "traditional", "size": 30, "price": 40000 },
-        { "dough": "thin", "size": 35, "price": 50000 }
+        { "dough": "traditional", "size": 35, "price": 50000 },
+        { "dough": "thin", "size": 25, "price": 28000 },
+        { "dough": "thin", "size": 30, "price": 38000 },
+        { "dough": "thin", "size": 35, "price": 48000 }
       ]
     },
     {
@@ -36,11 +41,14 @@
       "categoryId": 3,
       "title": "Дьябло Хот",
       "description": "Острая пепперони, халапеньо, острый соус Шрирача, моцарелла, красный лук и чили-масло",
-      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTboPJ7MOfNvsE1ZaEgGSe6owMYrX9yE1pzl6Njh2zQQ&s",
       "variants": [
         { "dough": "traditional", "size": 25, "price": 38000 },
         { "dough": "traditional", "size": 30, "price": 48000 },
-        { "dough": "thin", "size": 35, "price": 58000 }
+        { "dough": "traditional", "size": 35, "price": 58000 },
+        { "dough": "thin", "size": 25, "price": 36000 },
+        { "dough": "thin", "size": 30, "price": 46000 },
+        { "dough": "thin", "size": 35, "price": 56000 }
       ]
     },
     {
@@ -48,14 +56,16 @@
       "categoryId": 4,
       "title": "Четыре Сыра",
       "description": "Моцарелла, пармезан, дор-блю и чеддер на нежном сливочном соусе",
-      "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D6516CB7C56B2FFCB2ADAB19392.avif",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGR7s_tqrhi3BMBnAGlL7xycp5ztgCB-sIXO5eQxrTlA&s",
       "variants": [
         { "dough": "traditional", "size": 25, "price": 40000 },
         { "dough": "traditional", "size": 30, "price": 50000 },
-        { "dough": "thin", "size": 35, "price": 60000 }
+        { "dough": "traditional", "size": 35, "price": 60000 },
+        { "dough": "thin", "size": 25, "price": 38000 },
+        { "dough": "thin", "size": 30, "price": 48000 },
+        { "dough": "thin", "size": 35, "price": 58000 }
       ]
     }
   ],
-
   "orders": []
 }

@@ -20,11 +20,17 @@ export default function HomePage() {
     async function loadData() {
       setIsLoading(true);
 
-      const categoriesResponse = await api.get("/manage?type=categories");
-      const productsResponse = await api.get("/manage?type=products");
+      try {
+        const categoriesResponse = await api.get("/manage?type=categories");
+        const productsResponse = await api.get("/manage?type=products");
 
-      setCategories(categoriesResponse.data.data);
-      setProducts(productsResponse.data.data);
+        setCategories(categoriesResponse.data.data);
+        setProducts(productsResponse.data.data);
+      } catch (error) {
+        console.error("Ошибка загрузки данных:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     loadData();
@@ -53,16 +59,15 @@ export default function HomePage() {
     return a.id - b.id;
   });
 
-  const containerClasses = "max-w-6xl mx-auto px-6 py-8";
+  const containerClasses = "max-w-7xl mx-auto px-6 py-8";
 
   const topBarClasses = "flex items-center justify-between flex-wrap gap-4";
 
   const searchInputClasses =
-    "border border-gray-200 ronded-full px-5 py-2.5 text-sm outline-none focus:border-[#fe5f1e] transition-colors w-full sm:w-64";
+    "border border-gray-200 rounded-full px-5 py-2.5 text-sm outline-none focus:border-[#fe5f1e] transition-colors w-full sm:w-64";
 
   const gridClasses =
-    "mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6";
-
+    "mt-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4";
   return (
     <main className={containerClasses}>
       <div className={topBarClasses}>

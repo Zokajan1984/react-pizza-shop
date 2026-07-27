@@ -9,7 +9,7 @@ interface PizzaCardProps {
 }
 
 const doughLabels: Record<DoughType, string> = {
-  traditional: "традицинное",
+  traditional: "традиционное",
   thin: "тонкое",
 };
 
@@ -39,7 +39,7 @@ export function PizzaCard({ product }: PizzaCardProps) {
   const items = useCartStore((state) => state.items);
   const addItem = useCartStore((state) => state.addItem);
 
-  const cartItemId = product.id + " " + selectedDough + " " + selectedSize;
+  const cartItemId = product.id + "-" + selectedDough + "-" + selectedSize;
   const itemInCart = items.find((item) => item.id === cartItemId);
 
   function handleDoughChange(dough: DoughType) {
@@ -71,9 +71,10 @@ export function PizzaCard({ product }: PizzaCardProps) {
     new Set(product.variants.map((variant) => variant.dough)),
   );
 
-  const cardClasses = "bg-white rounded-2xl flex flex-col items-center";
+  const cardClasses =
+    "bg-white rounded-2xl shadow-sm p-4 flex flex-col items-center";
 
-  const imageClasses = "w-40 h-40 rounded-full object-cover";
+  const imageClasses = "w-84 h-64 object-cover rounded";
 
   const titleClasses = "mt-4 font-bold text-lg text-center";
 
@@ -90,7 +91,7 @@ export function PizzaCard({ product }: PizzaCardProps) {
 
   const selectorInactive = "text-gray-500";
 
-  const footerClasses = "mt-4 w-full items-center justify-between";
+  const footerClasses = "mt-4 w-full flex items-center justify-between";
 
   const priceClasses = "font-bold text-lg";
 
@@ -108,6 +109,7 @@ export function PizzaCard({ product }: PizzaCardProps) {
         className={imageClasses}
       />
 
+      <h3 className={titleClasses}>{product.title}</h3>
       <p className={descriptionClasses}>{product.description}</p>
 
       <div className={selectorWrapperClasses}>

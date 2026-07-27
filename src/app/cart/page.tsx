@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
 import { doughLabelsShort } from "@/components/PizzaCard";
+import { OrderModal } from "@/components/OrderModal";
 
 export default function CartPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const items = useCartStore((state) => state.items);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
@@ -13,7 +17,7 @@ export default function CartPage() {
   const containerClasses = "max-w-3xl mx-auto px-6 py-8";
 
   const rowClasses =
-    "flex tiems-center justify-berween py-4 border-b border-gray-100";
+    "flex items-center justify-between py-4 border-b border-gray-100";
 
   const infoClasses = "flex items-center gap-4";
   const imageClasses = "w-16 h-16 rounded-full object-cover";
@@ -24,20 +28,26 @@ export default function CartPage() {
     "flex items-center gap-3 bg-gray-100 rounded-full px-3 py-1";
 
   const counterButtonClasses =
-    "w-6 h-6 flex items-center justify-center rounded-full bg-[#fe5f1e] text-white font-bold text-sm";
+    "w-6 h-6 flex items-center justify-center " +
+    "rounded-full bg-[#fe5f1e] text-white font-bold text-sm";
 
   const removeButtonClasses =
     "ml-4 text-sm text-gray-400 hover:text-red-500 transition-colors";
 
   const totalClasses =
-    "mt-6 flex items-center juctify-between text-xl font-bold";
+    "mt-6 flex items-center justify-between text-xl font-bold";
 
-  const totalPriceSlasses = "text-[#fe5f1e]";
+  const totalPriceClasses = "text-[#fe5f1e]";
+
+  const checkoutButtonClasses =
+    "mt-6 w-full bg-[#fe5f1e] hover:bg-[#e2540f] " +
+    "transition-colors rounded-full py-4 " +
+    "text-white font-semibold text-lg";
 
   if (items.length === 0) {
     return (
       <main className={containerClasses}>
-        <p className="text-center text-gray-500 mt-13">Вашв корзина пуста</p>
+        <p className="text-center text-gray-500 mt-12">Ваша корзина пуста</p>
       </main>
     );
   }
@@ -66,11 +76,12 @@ export default function CartPage() {
           <div className="flex items-center">
             <div className={counterClasses}>
               <button
-                className={counterButtonClasses}
                 onClick={() => decreaseQuantity(item.id)}
+                className={counterButtonClasses}
               >
                 -
               </button>
+
               <span>{item.quantity}</span>
 
               <button
@@ -86,8 +97,8 @@ export default function CartPage() {
             </span>
 
             <button
-              className={removeButtonClasses}
               onClick={() => removeItem(item.id)}
+              className={removeButtonClasses}
             >
               Удалить
             </button>
@@ -97,10 +108,19 @@ export default function CartPage() {
 
       <div className={totalClasses}>
         <span>Итого:</span>
-        <span className={totalPriceSlasses}>
+        <span className={totalPriceClasses}>
           {totalPrice.toLocaleString("ru-RU")} сум
         </span>
       </div>
+
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className={checkoutButtonClasses}
+      >
+        Оформить заказ
+      </button>
+
+      <OrderModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </main>
   );
 }

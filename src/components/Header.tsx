@@ -1,17 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 
 export function Header() {
+  const [hasMounted, setHasMounted] = useState(false);
+
   const totalPrice = useCartStore((state) => state.getTotalPrice());
   const totalQuantity = useCartStore((state) => state.getTotalQuantity());
-  const containerClasses =
-    "max-w-6xl mx-auto px-6 py-4 flex items-center justify-between";
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const headerClasses =
     "sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm";
+
+  const containerClasses =
+    "max-w-6xl mx-auto px-6 py-4 flex items-center justify-between";
 
   const cartButtonClasses =
     "flex items-center gap-3 bg-[#fe5f1e] hover:bg-[#e2540f] transition-colors rounded-full px-6 py-3 text-white font-semibold";
@@ -27,8 +35,8 @@ export function Header() {
 
         <Link href="/cart" className={cartButtonClasses}>
           <ShoppingCart className="w-5 h-5" />
-          <span>{totalPrice.toLocaleString("ru-RU")} сум</span>
-          <span className={badgeClasses}>{totalQuantity}</span>
+          <span>{hasMounted ? totalPrice.toLocaleString("ru-RU") : 0} сум</span>
+          <span className={badgeClasses}>{hasMounted ? totalQuantity : 0}</span>
         </Link>
       </div>
     </header>
