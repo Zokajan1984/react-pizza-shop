@@ -8,7 +8,7 @@ interface CategoriesProps {
   onSelectCategory: (id: number | null) => void;
 }
 
-export function categories({
+export function Categories({
   categories,
   activeCategoryId,
   onSelectCategory,
