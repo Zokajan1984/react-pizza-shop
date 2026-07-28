@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readDb, writeDb } from "@/lib/dbServer";
 import { Category, Product, Order } from "@/types/pizza";
+import { error } from "console";
 
 export const dynamic = "force-dynamic";
 
@@ -83,6 +84,68 @@ export async function POST(request: NextRequest) {
     writeDb(db);
     return NextResponse.json({ data: newOrder });
   }
+  return NextResponse.json(
+    { error: "Неизвестный тип данных" },
+    { status: 400 },
+  );
+}
+
+export async function PUT(request: NextRequest) {
+  const body = await request.json();
+  const { type, id, data } = body;
+
+  const db = readDb();
+
+  if (type === "category") {
+    db.categories = db.categories.map((category) =>
+      category.id === id ? { ...category, ...data } : category,
+    );
+
+    writeDb(db);
+    return NextResponse.json({ success: true });
+  }
+
+  if (type === "pruduct") {
+    db.products = db.products.map((product) =>
+      product.id === id ? { ...product, ...data } : product,
+    );
+    writeDb(db);
+    return NextResponse.json({ success: true });
+  }
+
+  if (type === "order") {
+    db.orders = db.orders.map((order) =>
+      order.id === id ? { ...order, ...data } : order,
+    );
+    writeDb(db);
+    return NextResponse.json({ success: true });
+  }
+
+  return NextResponse.json(
+    { error: "Неизвестный тип данных" },
+    { status: 400 },
+  );
+}
+
+export async function DELETE(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const type = searchParams.get("type");
+  const id = Number(searchParams.get("id"));
+
+  const db = readDb();
+
+  if (type === "category") {
+    db.categories = db.categories.filter((category) => category.id !== id);
+    writeDb(db);
+    return NextResponse.json({ success: true });
+  }
+
+  if (type === "product") {
+    db.products = db.products.filter((product) => product.id !== id);
+    writeDb(db);
+    return NextResponse.json({ success: true });
+  }
+
   return NextResponse.json(
     { error: "Неизвестный тип данных" },
     { status: 400 },
