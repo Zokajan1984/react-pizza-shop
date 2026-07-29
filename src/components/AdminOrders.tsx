@@ -87,7 +87,7 @@ export function AdminOrders() {
   }
 
   return (
-    <div>
+    <div className="w-150">
       {orders.map((order) => (
         <div key={order.id} className={cardClasses}>
           <div className={headerRowClasses}>

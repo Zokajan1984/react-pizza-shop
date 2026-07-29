@@ -140,7 +140,7 @@ export function AdminProducts() {
 
   const labelClasses = "text-sm font-medium text-gray-700 mb-1 block";
 
-  const formCardClasses = "bg-white border border-gray-100 rounded-2xl p-6";
+  const formCardClasses = "bg-white border border-gray-500 rounded-2xl p-6";
 
   const variantRowClasses = "flex items-center gap-3 mt-3";
 
@@ -165,7 +165,7 @@ export function AdminProducts() {
   }
 
   return (
-    <div>
+    <div className="w-150">
       <div className={formCardClasses}>
         <h3 className="font-bold text-lg mb-4">Добавить пиццу</h3>
 
