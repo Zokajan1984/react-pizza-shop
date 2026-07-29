@@ -177,24 +177,39 @@
     {
       "id": 1785325705579,
       "categoryId": 2,
-      "title": "123",
+      "title": "1234",
       "description": "333221",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwe0_RAw03uX3HyEHvA1kyAxH94DmIZnpY77twkFj3og&s=10",
       "variants": [
         {
           "dough": "traditional",
           "size": 25,
-          "price": 300
+          "price": 30000
         },
         {
           "dough": "traditional",
           "size": 30,
-          "price": 400
+          "price": 40000
         },
         {
           "dough": "traditional",
           "size": 35,
-          "price": 450
+          "price": 45000
+        },
+        {
+          "dough": "thin",
+          "size": 25,
+          "price": 20000
+        },
+        {
+          "dough": "thin",
+          "size": 30,
+          "price": 25000
+        },
+        {
+          "dough": "thin",
+          "size": 35,
+          "price": 30000
         }
       ]
     },
@@ -208,32 +223,32 @@
         {
           "dough": "thin",
           "size": 25,
-          "price": 200
+          "price": 20000
         },
         {
           "dough": "thin",
           "size": 30,
-          "price": 250
+          "price": 25000
         },
         {
           "dough": "thin",
           "size": 35,
-          "price": 300
+          "price": 30000
         },
         {
           "dough": "traditional",
           "size": 25,
-          "price": 250
+          "price": 25000
         },
         {
           "dough": "traditional",
           "size": 30,
-          "price": 300
+          "price": 30000
         },
         {
           "dough": "traditional",
           "size": 35,
-          "price": 4000
+          "price": 40000
         }
       ]
     }

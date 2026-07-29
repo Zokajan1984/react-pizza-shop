@@ -105,7 +105,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  if (type === "pruduct") {
+  if (type === "product") {
     db.products = db.products.map((product) =>
       product.id === id ? { ...product, ...data } : product,
     );
