@@ -23,6 +23,7 @@ export function Categories({
   return (
     <div className="flex flex-wrap gap-3">
       <button
+        onClick={() => onSelectCategory(null)}
         className={
           activeCategoryId === null
             ? baseButtonClasses + " " + activeClasses
