@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Plus, Trash2 } from "lucide-react";
+import { Trash2, Plus } from "lucide-react";
 import { api } from "@/lib/axios";
 import {
   Category,
@@ -11,7 +11,6 @@ import {
   PizzaSize,
   PizzaVariant,
 } from "@/types/pizza";
-import { table } from "console";
 
 const emptyVariant: PizzaVariant = {
   dough: "traditional",
@@ -31,6 +30,7 @@ export function AdminProducts() {
   const [variants, setVariants] = useState<PizzaVariant[]>([
     { ...emptyVariant },
   ]);
+  const [editingProductId, setEditingProductId] = useState<number | null>(null);
 
   useEffect(() => {
     loadData();
@@ -86,6 +86,7 @@ export function AdminProducts() {
   }
 
   function resetForm() {
+    setEditingProductId(null);
     setTitle("");
     setDescription("");
     setImageUrl("");
@@ -93,7 +94,16 @@ export function AdminProducts() {
     setVariants([{ ...emptyVariant }]);
   }
 
-  async function handleAddProduct() {
+  function handleStartEdit(product: Product) {
+    setEditingProductId(product.id);
+    setTitle(product.title);
+    setDescription(product.description);
+    setImageUrl(product.imageUrl);
+    setCategoryId(product.categoryId);
+    setVariants(product.variants.map((variant) => ({ ...variant })));
+  }
+
+  async function handleSaveProduct() {
     if (
       title.trim().length === 0 ||
       imageUrl.trim().length === 0 ||
@@ -104,23 +114,26 @@ export function AdminProducts() {
     }
 
     try {
-      await api.post("/manage", {
-        type: "product",
-        data: {
-          title,
-          description,
-          imageUrl,
-          categoryId,
-          variants,
-        },
-      });
+      if (editingProductId === null) {
+        await api.post("/manage", {
+          type: "product",
+          data: { title, description, imageUrl, categoryId, variants },
+        });
+        toast.success("Пицца добавлена");
+      } else {
+        await api.put("/manage", {
+          type: "product",
+          id: editingProductId,
+          data: { title, description, imageUrl, categoryId, variants },
+        });
+        toast.success("Пицца обновлена");
+      }
 
-      toast.success("Пицца длбавлена");
       resetForm();
       loadData();
     } catch (error) {
-      console.error("Ошибка добавления пиццы:", error);
-      toast.error("Не удалось добавить пиццу");
+      console.error("Ошибка сохранения пиццы:", error);
+      toast.error("Не удалось сохранить пиццу");
     }
   }
 
@@ -128,6 +141,11 @@ export function AdminProducts() {
     try {
       await api.delete("/manage?type=product&id=" + id);
       toast.success("Пицца удалена");
+
+      if (editingProductId === id) {
+        resetForm();
+      }
+
       loadData();
     } catch (error) {
       console.error("Ошибка удаления пиццы:", error);
@@ -136,22 +154,31 @@ export function AdminProducts() {
   }
 
   const inputClasses =
-    "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#fe5f1e] transition-colors";
+    "w-full border border-gray-200 rounded-xl " +
+    "px-4 py-2.5 text-sm outline-none " +
+    "focus:border-[#fe5f1e] transition-colors";
 
   const labelClasses = "text-sm font-medium text-gray-700 mb-1 block";
 
-  const formCardClasses = "bg-white border border-gray-500 rounded-2xl p-6";
+  const formCardClasses = "bg-white border border-gray-100 rounded-2xl p-6";
 
   const variantRowClasses = "flex items-center gap-3 mt-3";
 
   const smallInputClasses =
-    "border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-[#fe5f1e] transitio-colors";
+    "border border-gray-200 rounded-xl " +
+    "px-3 py-2 text-sm outline-none " +
+    "focus:border-[#fe5f1e] transition-colors";
 
   const addButtonClasses =
-    "mt-6 w-full bg-[#fe5f1e] hover:bg-[#e2540f] transition-colors text-white font-semibold rounded-xl py-3";
+    "mt-6 w-full bg-[#fe5f1e] hover:bg-[#e2540f] " +
+    "transition-colors text-white font-semibold " +
+    "rounded-xl py-3";
+
+  const cancelButtonClasses =
+    "mt-2 w-full text-sm text-gray-500 hover:text-gray-700";
 
   const productRowClasses =
-    "flex items-center justify-between py-3 border-b border-gray-100";
+    "flex items-center justify-between " + "py-3 border-b border-gray-100";
 
   const productInfoClasses = "flex items-center gap-3";
 
@@ -165,9 +192,13 @@ export function AdminProducts() {
   }
 
   return (
-    <div className="w-150">
+    <div>
       <div className={formCardClasses}>
-        <h3 className="font-bold text-lg mb-4">Добавить пиццу</h3>
+        <h3 className="font-bold text-lg mb-4">
+          {editingProductId === null
+            ? "Добавить пиццу"
+            : "Редактирование пиццы"}
+        </h3>
 
         <label className={labelClasses}>Название</label>
         <input
@@ -234,9 +265,9 @@ export function AdminProducts() {
               }
               className={smallInputClasses}
             >
-              <option value={25}>25</option>
-              <option value={30}>30</option>
-              <option value={35}>35</option>
+              <option value={25}>25 см</option>
+              <option value={30}>30 см</option>
+              <option value={35}>35 см</option>
             </select>
 
             <input
@@ -266,9 +297,17 @@ export function AdminProducts() {
           Добавить вариант
         </button>
 
-        <button onClick={handleAddProduct} className={addButtonClasses}>
-          Сохранить пиццу
+        <button onClick={handleSaveProduct} className={addButtonClasses}>
+          {editingProductId === null
+            ? "Сохранить пиццу"
+            : "Сохранить изменения"}
         </button>
+
+        {editingProductId !== null && (
+          <button onClick={resetForm} className={cancelButtonClasses}>
+            Отменить редактирование
+          </button>
+        )}
       </div>
 
       <div className="mt-8">
@@ -276,15 +315,17 @@ export function AdminProducts() {
 
         {products.map((product) => (
           <div key={product.id} className={productRowClasses}>
-            <div className={productInfoClasses}>
+            <button
+              onClick={() => handleStartEdit(product)}
+              className={productInfoClasses}
+            >
               <img
                 src={product.imageUrl}
                 alt={product.title}
                 className={productImageClasses}
               />
-
               <span>{product.title}</span>
-            </div>
+            </button>
 
             <button
               onClick={() => handleDeleteProduct(product.id)}
@@ -294,6 +335,10 @@ export function AdminProducts() {
             </button>
           </div>
         ))}
+
+        {products.length === 0 && (
+          <p className="text-gray-500 text-sm">Пицц пока нет</p>
+        )}
       </div>
     </div>
   );
