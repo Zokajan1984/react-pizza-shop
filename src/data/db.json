@@ -203,6 +203,86 @@
       "totalPrice": 78000,
       "status": "new",
       "createdAt": "2026-07-27T12:20:12.991Z"
+    },
+    {
+      "id": 1785263167780,
+      "fullName": "Zokirjon",
+      "phone": "+998 (90) 500-11-22",
+      "address": "Buxara",
+      "comment": "",
+      "items": [
+        {
+          "productId": 1,
+          "title": "Пепперони Фреш",
+          "dough": "traditional",
+          "size": 25,
+          "price": 35000,
+          "quantity": 1
+        },
+        {
+          "productId": 2,
+          "title": "Овощная Классика",
+          "dough": "traditional",
+          "size": 25,
+          "price": 30000,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "title": "Дьябло Хот",
+          "dough": "traditional",
+          "size": 25,
+          "price": 38000,
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 103000,
+      "status": "new",
+      "createdAt": "2026-07-28T18:26:07.780Z"
+    },
+    {
+      "id": 1785263395106,
+      "fullName": "Ali Baba",
+      "phone": "+998 (88) 870-70-70",
+      "address": "Tashkent",
+      "comment": "",
+      "items": [
+        {
+          "productId": 4,
+          "title": "Четыре Сыра",
+          "dough": "traditional",
+          "size": 25,
+          "price": 40000,
+          "quantity": 1
+        },
+        {
+          "productId": 4,
+          "title": "Четыре Сыра",
+          "dough": "thin",
+          "size": 25,
+          "price": 38000,
+          "quantity": 1
+        },
+        {
+          "productId": 4,
+          "title": "Четыре Сыра",
+          "dough": "thin",
+          "size": 35,
+          "price": 58000,
+          "quantity": 2
+        },
+        {
+          "productId": 4,
+          "title": "Четыре Сыра",
+          "dough": "thin",
+          "size": 30,
+          "price": 48000,
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 290000,
+      "status": "new",
+      "createdAt": "2026-07-28T18:29:55.106Z"
     }
   ]
 }
