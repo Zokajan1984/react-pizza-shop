@@ -8,10 +8,9 @@ import { AdminProducts } from "@/components/AdminProducts";
 import { AdminOrders } from "@/components/AdminOrders";
 
 export default function AdminPage() {
-  const containerClasses = "max-w-5xl mx-auto px-6 py-8";
-
-  const tabsListClasses =
-    "bg-gray-100 rounded-full p-1 inline-flex gap-1 w-full";
+  const containerClasses =
+    "max-w-5xl mx-auto px-4 sm:px-6 py-8 overflow-x-hidden";
+  const tabsListClasses = "bg-gray-100 rounded-full p-1 flex flex-wrap gap-1";
 
   const tabsTriggerClasses =
     "rounded-full px-5 py-2 text-sm font-medium " +
@@ -33,7 +32,7 @@ export default function AdminPage() {
 
       <h1 className="text-2xl font-bold mb-6">Админ-панель</h1>
 
-      <Tabs defaultValue="products" className="w-150">
+      <Tabs defaultValue="products">
         <TabsList className={tabsListClasses}>
           <TabsTrigger value="products" className={tabsTriggerClasses}>
             Продукты

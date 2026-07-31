@@ -49,7 +49,7 @@ export function AdminCategories() {
 
   async function handleDeleteCategory(id: number) {
     try {
-      await api.delete("/manage?type=category&id=" + id);
+      await api.delete("/manage?type=categry&id=" + id);
       toast.success("Категория удалена");
       loadCategories();
     } catch (error) {
@@ -75,7 +75,7 @@ export function AdminCategories() {
   }
 
   return (
-    <div className="w-150 border border-x p-6 rounded-xl">
+    <div>
       <div className="flex gap-3">
         <input
           type="text"

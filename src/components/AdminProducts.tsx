@@ -162,12 +162,15 @@ export function AdminProducts() {
 
   const formCardClasses = "bg-white border border-gray-100 rounded-2xl p-6";
 
-  const variantRowClasses = "flex items-center gap-3 mt-3";
+  const variantRowClasses =
+    "grid grid-cols-2 sm:flex sm:flex-wrap " +
+    "items-center gap-3 mt-3 min-w-0";
 
   const smallInputClasses =
     "border border-gray-200 rounded-xl " +
     "px-3 py-2 text-sm outline-none " +
-    "focus:border-[#fe5f1e] transition-colors";
+    "focus:border-[#fe5f1e] transition-colors " +
+    "w-full sm:w-auto";
 
   const addButtonClasses =
     "mt-6 w-full bg-[#fe5f1e] hover:bg-[#e2540f] " +

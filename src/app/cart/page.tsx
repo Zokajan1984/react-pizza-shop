@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 import { doughLabelsShort } from "@/components/PizzaCard";
 import { OrderModal } from "@/components/OrderModal";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 
 export default function CartPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,25 +16,33 @@ export default function CartPage() {
   const removeItem = useCartStore((state) => state.removeItem);
   const totalPrice = useCartStore((state) => state.getTotalPrice());
 
-  const containerClasses = "max-w-3xl mx-auto px-6 py-8";
+  const containerClasses =
+    "max-w-3xl mx-auto px-4 sm:px-6 py-8 overflow-x-hidden";
+
+  const backLinkClasses =
+    "flex items-center gap-2 text-gray-500 " +
+    "hover:text-[#fe5f1e] transition-colors mb-6";
 
   const rowClasses =
-    "flex items-center justify-between py-4 border-b border-gray-100";
+    "flex flex-wrap items-center justify-between " +
+    "gap-3 py-4 border-b border-gray-100 min-w-0";
 
-  const infoClasses = "flex items-center gap-4";
-  const imageClasses = "w-16 h-16 rounded-full object-cover";
+  const infoClasses = "flex items-center gap-4 min-w-0";
+  const imageClasses = "w-16 h-16 rounded-full object-cover shrink-0";
 
-  const titleClasses = "font-semibold";
+  const titleClasses = "font-semibold truncate";
   const paramsClasses = "text-sm text-gray-500";
+
   const counterClasses =
-    "flex items-center gap-3 bg-gray-100 rounded-full px-3 py-1";
+    "flex items-center gap-3 bg-gray-100 rounded-full px-3 py-1 shrink-0";
 
   const counterButtonClasses =
     "w-6 h-6 flex items-center justify-center " +
     "rounded-full bg-[#fe5f1e] text-white font-bold text-sm";
 
   const removeButtonClasses =
-    "ml-4 text-sm text-gray-400 hover:text-red-500 transition-colors";
+    "ml-4 text-sm text-gray-400 hover:text-red-500 " +
+    "transition-colors shrink-0";
 
   const totalClasses =
     "mt-6 flex items-center justify-between text-xl font-bold";
@@ -49,10 +57,7 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <main className={containerClasses}>
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-gray-500 hover:text-[#fe5f1e] transition-colors mb-6"
-        >
+        <Link href="/" className={backLinkClasses}>
           <ArrowLeft className="w-4 h-4" />
           Назад на главную
         </Link>
@@ -64,13 +69,11 @@ export default function CartPage() {
 
   return (
     <main className={containerClasses}>
-      <Link
-        href="/"
-        className="flex items-center gap-2 text-gray-500 hover:text-[#fe5f1e] transition-colors mb-6"
-      >
+      <Link href="/" className={backLinkClasses}>
         <ArrowLeft className="w-4 h-4" />
         Назад на главную
       </Link>
+
       <h1 className="text-2xl font-bold mb-4">Корзина</h1>
 
       {items.map((item) => (
@@ -82,7 +85,7 @@ export default function CartPage() {
               className={imageClasses}
             />
 
-            <div>
+            <div className="min-w-0">
               <p className={titleClasses}>{item.title}</p>
               <p className={paramsClasses}>
                 {doughLabelsShort[item.dough]}, {item.size} см
@@ -90,7 +93,7 @@ export default function CartPage() {
             </div>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center flex-wrap gap-2">
             <div className={counterClasses}>
               <button
                 onClick={() => decreaseQuantity(item.id)}
@@ -109,7 +112,7 @@ export default function CartPage() {
               </button>
             </div>
 
-            <span className="ml-4 font-semibold w-24 text-right">
+            <span className="font-semibold w-24 text-right shrink-0">
               {(item.price * item.quantity).toLocaleString("ru-RU")} сум
             </span>
 
