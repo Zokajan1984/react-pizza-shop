@@ -179,45 +179,6 @@
       ]
     },
     {
-      "id": 1785331417635,
-      "categoryId": 1785331243131,
-      "title": "Шоколадная пицца",
-      "description": "Шоколадная пицца — пицца, приготовленная с использованием шоколада в качестве основного ингредиента. ",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaK_qpz9Xb2Ml31ar3TiMoaFc4KnMpGIXik4uh-L5h7g&s=10",
-      "variants": [
-        {
-          "dough": "thin",
-          "size": 25,
-          "price": 28000
-        },
-        {
-          "dough": "thin",
-          "size": 30,
-          "price": 33000
-        },
-        {
-          "dough": "thin",
-          "size": 35,
-          "price": 43000
-        },
-        {
-          "dough": "traditional",
-          "size": 25,
-          "price": 30000
-        },
-        {
-          "dough": "traditional",
-          "size": 30,
-          "price": 42000
-        },
-        {
-          "dough": "traditional",
-          "size": 35,
-          "price": 48000
-        }
-      ]
-    },
-    {
       "id": 1785332516062,
       "categoryId": 1785331243131,
       "title": "Шоколадная",
