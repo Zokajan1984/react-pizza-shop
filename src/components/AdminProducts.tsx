@@ -56,17 +56,6 @@ export function AdminProducts() {
   }
 
   function handleAddVariantRow() {
-    const isDuplicate = variants.some(
-      (variant) =>
-        variant.dough === emptyVariant.dough &&
-        variant.size === emptyVariant.size,
-    );
-
-    if (isDuplicate) {
-      toast.error("Такой вариант уже добавлен, измените тесто или размер");
-      return;
-    }
-
     setVariants([...variants, { ...emptyVariant }]);
   }
 
@@ -79,37 +68,21 @@ export function AdminProducts() {
     field: keyof PizzaVariant,
     value: string,
   ) {
-    const updatedVariants = variants.map((variant, variantIndex) => {
-      if (variantIndex !== index) return variant;
+    setVariants(
+      variants.map((variant, variantIndex) => {
+        if (variantIndex !== index) return variant;
 
-      if (field === "dough") {
-        return { ...variant, dough: value as DoughType };
-      }
+        if (field === "dough") {
+          return { ...variant, dough: value as DoughType };
+        }
 
-      if (field === "size") {
-        return { ...variant, size: Number(value) as PizzaSize };
-      }
+        if (field === "size") {
+          return { ...variant, size: Number(value) as PizzaSize };
+        }
 
-      return { ...variant, price: Number(value) };
-    });
-
-    if (field === "dough" || field === "size") {
-      const changedVariant = updatedVariants[index];
-
-      const isDuplicate = updatedVariants.some(
-        (variant, variantIndex) =>
-          variantIndex !== index &&
-          variant.dough === changedVariant.dough &&
-          variant.size === changedVariant.size,
-      );
-
-      if (isDuplicate) {
-        toast.error("Такая комбинация теста и размера уже есть");
-        return;
-      }
-    }
-
-    setVariants(updatedVariants);
+        return { ...variant, price: Number(value) };
+      }),
+    );
   }
 
   function resetForm() {
